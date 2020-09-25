@@ -10,12 +10,23 @@ import {
   deleteTodo,
   completeAll,
 } from '../../features/todosSlice'
-
-const TodoList = (): JSX.Element => {
+import { TodoShow } from '../../features/todoShowSlice'
+const TodoList = (): JSX.Element | null => {
   const todos = useSelector<rootState, Todos>(state => state.todos)
+  const todoShow = useSelector<rootState, TodoShow>(state => state.todoShow)
   const dispatch = useDispatch()
   const [isEditing, setEditing] = useState(false)
   const isCompletedAll = useMemo(() => todos.every(i => i.done), [todos])
+  const todoList = useMemo(() => {
+    switch (todoShow) {
+      case 'All':
+        return todos
+      case 'Active':
+        return todos.filter(item => !item.done)
+      case 'Completed':
+        return todos.filter(item => item.done)
+    }
+  }, [todoShow, todos])
   const toggleHandler = (
     id: string,
     e: React.ChangeEvent<HTMLInputElement>
@@ -45,6 +56,9 @@ const TodoList = (): JSX.Element => {
   const toggleAllHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     dispatch(completeAll(e.target.checked))
   }
+  if (todoList.length === 0) {
+    return null
+  }
   return (
     <div className='main'>
       <input
@@ -56,7 +70,7 @@ const TodoList = (): JSX.Element => {
       />
       <label htmlFor='toggle-all'>Mark all as complete</label>
       <ul className='todo-list'>
-        {todos.map(item => (
+        {todoList.map(item => (
           <li
             className={`${item.done ? 'completed' : ''} ${
               isEditing ? 'editing' : ''

@@ -46,6 +46,11 @@ const todoslice = createSlice({
       }
       updateLocalStorage(state)
     },
+    clearCompleted(state) {
+      const actives = state.filter(item => !item.done) as Todos
+      updateLocalStorage(actives)
+      return actives
+    },
   },
 })
 export const {
@@ -54,5 +59,6 @@ export const {
   completeAll,
   editTodo,
   deleteTodo,
+  clearCompleted,
 } = todoslice.actions
 export default todoslice.reducer
