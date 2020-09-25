@@ -7,9 +7,9 @@ import Footer from './components/TodoFooter/Footer'
 function App(): JSX.Element {
   return (
     <>
-      <Header></Header>
-      <TodoList></TodoList>
-      <Footer></Footer>
+      <Header />
+      <TodoList />
+      <Footer />
     </>
   )
 }

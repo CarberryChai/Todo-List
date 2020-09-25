@@ -31,7 +31,7 @@ const Header = (): JSX.Element => {
         onChange={changeHandler}
         autoFocus
       />
-      <button type='submit' className='hidden'></button>
+      <button type='submit' className='hidden' />
     </form>
   )
 }

@@ -85,10 +85,7 @@ const TodoList = (): JSX.Element | null => {
                 onChange={e => toggleHandler(item.id, e)}
               />
               <label onDoubleClick={() => setEditing(true)}>{item.text}</label>
-              <button
-                className='destroy'
-                onClick={() => deleteItem(item.id)}
-              ></button>
+              <button className='destroy' onClick={() => deleteItem(item.id)} />
             </div>
             <input
               className='edit'
