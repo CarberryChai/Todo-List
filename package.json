@@ -51,5 +51,6 @@
     "stylelint-order": "^4.1.0",
     "stylelint-scss": "^3.18.0",
     "typescript": "^4.0.3"
-  }
+  },
+  "homepage": "https://carberrychai.github.io/Todo-List"
 }
